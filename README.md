@@ -1,6 +1,6 @@
 # SC2UserDataViewer
 
-Small python script to speedup my editing of huge User Data tables (in my case: 40 colomn x 280 rows)
+Small python script to speedup my editing of huge User Data tables (in my case: 40 column x 280 rows)
 
 Can convert from xml to csv and backwards.
 The generated file will be named the same except the file extension and placed inside the same folder.
