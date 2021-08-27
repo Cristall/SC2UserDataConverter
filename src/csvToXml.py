@@ -2,11 +2,9 @@ from collections import defaultdict
 from io import TextIOWrapper
 import xml.etree.ElementTree as xml_parser
 
-
 table_tag = "CUser"
 field_tag = "Fields"
 instances_tag = "Instances"
-field_subtags = ["Id", "Type", "Count", "EditorColumn", "Flags"]
 new_table_identifier = "@@NewTable@@"
 
 def string_to_list(line:str,seperator:str=";"):

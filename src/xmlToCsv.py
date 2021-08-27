@@ -2,7 +2,6 @@ from collections import defaultdict
 from io import TextIOWrapper
 import xml.etree.ElementTree as xml_parser
 
-#Globals
 table_tag = "CUser"
 field_tag = "Fields"
 instances_tag = "Instances"
