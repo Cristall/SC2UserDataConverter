@@ -1,8 +1,10 @@
 # SC2UserDataViewer
 
-Small python script to speedup my editing of huge User Data tables (in my case: 40 column x 280 rows)
+Small python script to speedup the editing of huge User Data tables (in my case: 40 columns x 280 rows)
 
 Can convert from xml to csv and backwards.
 The generated file will be named the same except the file extension and placed inside the same folder.
 
-When parsing an xml file it will add quotation marks to string and color-type entries to allow for arrays to work properly, but it will probably work without quotes for non-array fields.
+Allows drag and drop file ontop of the executable.
+Terminal execution allows for 2 arguments, first input, second output path. Output path is optional and will default to input path if not present.
+If no argument is given, promt will ask for a path to be entered manually.
