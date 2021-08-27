@@ -122,7 +122,7 @@ def loop_over_tables_in_root(root:xml_parser.ElementTree, output:TextIOWrapper):
         # print(content_rows)
         write_table_dict_to_csv(output, header_rows, content_rows, table.attrib["id"])
 
-def convert_xml_to_csv(filename:str):
-    root = xml_parser.parse(filename + ".xml")
-    with open(filename + ".csv", "w", newline="") as output:
+def convert_xml_to_csv(input_filename:str, output_filename:str):
+    root = xml_parser.parse(input_filename + ".xml")
+    with open(output_filename + ".csv", "w", newline="") as output:
         loop_over_tables_in_root(root, output)

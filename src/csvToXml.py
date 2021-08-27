@@ -130,12 +130,12 @@ def loop_over_lines(input:TextIOWrapper, catalog:xml_parser.Element):
         line_index += 1
 
 
-def convert_csv_to_xml(filename:str):
-    with open(filename + ".csv", "r", newline="") as input:
+def convert_csv_to_xml(input_filename:str,output_filename:str):
+    with open(input_filename + ".csv", "r", newline="") as input:
         catalog = xml_parser.Element("Catalog")
         root = xml_parser.ElementTree(catalog)
         
         loop_over_lines(input, catalog)
         # print("")
         xml_parser.indent(root, space="    ",)
-        root.write(filename+".xml", encoding="utf-8" ,xml_declaration=True)
+        root.write(output_filename+".xml", encoding="utf-8" ,xml_declaration=True)
