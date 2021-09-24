@@ -118,8 +118,6 @@ def loop_over_tables_in_root(root:xml_parser.ElementTree, output:TextIOWrapper):
     userData_tables = root.findall(table_tag)
     for table in userData_tables:
         header_rows, content_rows = parse_fields_in_table(table)
-        # print(header_rows)
-        # print(content_rows)
         write_table_dict_to_csv(output, header_rows, content_rows, table.attrib["id"])
 
 def convert_xml_to_csv(input_filename:str, output_filename:str):

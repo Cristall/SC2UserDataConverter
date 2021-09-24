@@ -12,8 +12,7 @@ def string_to_list(line:str,seperator:str=";"):
     line = line.strip("\r")
     index_line = 0
     length = len(line)
-    list = []
-    list.append(None)
+    list = [None]
     index_list = 0
     inside_string = False
     while(index_line < length):
@@ -44,14 +43,15 @@ def loop_over_lines(input:TextIOWrapper, catalog:xml_parser.Element):
     while line_index < len(lines):
         values = string_to_list(lines[line_index])
         if values[0] == None:
+            #empty line
             line_index += 1
             continue
         if(values[0] == new_table_identifier):
+            #create new table, read next 5 lines for field data
             current_table = xml_parser.Element(table_tag)
             current_table.set("id", values[1])
             catalog.append(current_table)
             
-            # read fields data
             line_index += 1
             ids = string_to_list(lines[line_index])
             line_index += 1
@@ -83,7 +83,7 @@ def loop_over_lines(input:TextIOWrapper, catalog:xml_parser.Element):
                             new_flag.set("value", indiv_flag[1])
                 index += 1
         else:
-            #create new instance and fill it
+            #create new instance
             new_instance = xml_parser.Element(instances_tag)
             new_instance.set("Id", values[0])
             current_table.append(new_instance)
@@ -91,11 +91,13 @@ def loop_over_lines(input:TextIOWrapper, catalog:xml_parser.Element):
             
             while index < len(ids):
                 if(values[index] == None):
+                    #entry is empty
                     index += 1
                     continue
                 type = types[index]
                 
                 if(counts[index] != None and counts[index] != "1"):
+                    #array type field 
                     count = int(counts[index])
                     value_list = string_to_list(values[index],",")
                     i = 0
@@ -114,9 +116,9 @@ def loop_over_lines(input:TextIOWrapper, catalog:xml_parser.Element):
                         if(i != 0):
                             new_context.set("Index", str(i))
                         new_value.append(new_context)
-                        
                         i += 1
                 else:
+                    #normal entry
                     if(type == "String" or type == "Color"):
                         values[index]=values[index].replace("\"","")
                     new_value = xml_parser.Element(type)
@@ -129,13 +131,17 @@ def loop_over_lines(input:TextIOWrapper, catalog:xml_parser.Element):
                 index += 1
         line_index += 1
 
-
 def convert_csv_to_xml(input_filename:str,output_filename:str):
     with open(input_filename + ".csv", "r", newline="") as input:
         catalog = xml_parser.Element("Catalog")
         root = xml_parser.ElementTree(catalog)
-        
         loop_over_lines(input, catalog)
-        # print("")
-        xml_parser.indent(root, space="    ",)
+        xml_parser.indent(root, space="    ")
         root.write(output_filename+".xml", encoding="utf-8" ,xml_declaration=True)
+    file_string:str
+    with open(output_filename+".xml", "r", newline="",encoding='utf8') as file:
+        file_string = file.read()
+        file_string = file_string.replace(" />", "/>")
+        file_string = file_string.replace("\'", "\"")
+    with open(output_filename+".xml", "w", newline="",encoding="utf8") as file:
+        file.write(file_string+"\r\n")
