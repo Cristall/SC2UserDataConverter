@@ -1,4 +1,4 @@
-# SC2UserDataViewer
+# SC2UserDataConverter
 
 Small python script to speedup the editing of huge User Data tables (in my case: 40 columns x 280 rows)
 
