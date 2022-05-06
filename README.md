@@ -5,6 +5,5 @@ Small python script to speedup the editing of huge User Data tables (in my case:
 Can convert from xml to csv and backwards.
 The generated file will be named the same except the file extension and placed inside the same folder.
 
-Allows drag and drop file ontop of the executable.
 Terminal execution allows for 2 arguments, first input, second output path. Output path is optional and will default to input path if not present.
 If no argument is given, promt will ask for a path to be entered manually.
