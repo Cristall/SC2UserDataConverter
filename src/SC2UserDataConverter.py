@@ -9,6 +9,7 @@ def main():
     output_path:str
     if len(sys.argv) < 2:
         input_path = input("Enter path: ")
+        output_path = input_path
     elif (len(sys.argv) == 2):
         input_path = sys.argv[1]
         output_path = input_path
@@ -16,7 +17,7 @@ def main():
         input_path = sys.argv[1]
         output_path = sys.argv[2]
     else:
-        raise Exception("Too many Arguments. Excepts 1 or 2.")
+        raise Exception("Too many Arguments. Excepts 0, 1 or 2.")
 
     input_filename, input_file_extension = os.path.splitext(input_path)
     output_filename, output_file_extension = os.path.splitext(output_path)
@@ -26,7 +27,7 @@ def main():
     elif input_file_extension == ".csv":
         csvToXml.convert_csv_to_xml(input_filename, output_filename)
     else:
-        print("file extension " + input_file_extension[1:] + " not supported")
+        print("File extension " + input_file_extension[1:] + " not supported!")
         sys.exit()
     
 if __name__ == "__main__":
