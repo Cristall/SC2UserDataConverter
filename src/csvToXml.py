@@ -125,7 +125,6 @@ def loop_over_lines(input:TextIOWrapper, catalog:xml_parser.Element):
                     new_value.append(new_context)
                 
                 index += 1
-        line_index += 1
 
 # wrapper function for extended utility
 def convert_csv_to_xml(input_filename:str,output_filename:str):
