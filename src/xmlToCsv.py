@@ -50,11 +50,11 @@ def parse_instance(instance:xml_parser.Element, fields_dict:dict, types:set, con
     id_list = fields_dict["Id"]
     
     # use index here because access to count field is required
-    index = 0
-    while (index < len(id_list)):
+    id = 0
+    while (id < len(id_list)):
         something = {}
         counts = fields_dict["Count"]
-        count_str = counts[index]
+        count_str = counts[id]
         count = 1
         if count_str != None:
             count = int(count_str)
@@ -63,8 +63,8 @@ def parse_instance(instance:xml_parser.Element, fields_dict:dict, types:set, con
         while (index < count):
             something[str(index)] = ""
             index += 1
-        id_to_index_dict[id_list[index]] = something   
-        index += 1
+        id_to_index_dict[id_list[id]] = something
+        id += 1
     
     # fill dictionaries
     for type in types:
