@@ -10,7 +10,7 @@ instances_tag = "Instances"
 new_table_identifier = "@@NewTable@@"
 
 # helper function to split flags and array type entries
-def string_to_list(line:str,seperator:str=","):
+def string_to_list(line:str,seperator:str=";"):
     line = line.strip("\n")
     line = line.strip("\r")
     index_line = 0
@@ -71,7 +71,7 @@ def loop_over_lines(input:TextIOWrapper, catalog:xml_parser.Element):
                 if(columns[index] != ""):
                     new_field.set("EditorColumn", columns[index])
                 if(flags[index] != ""):
-                    flag_list = (flags[index]).split(",")
+                    flag_list = (flags[index]).split(";")
                     if flag_list:
                         for flag in flag_list:
                             indiv_flag = flag.split(":")
@@ -97,14 +97,14 @@ def loop_over_lines(input:TextIOWrapper, catalog:xml_parser.Element):
                 if(counts[index] != "" and counts[index] != "1"):
                     # array type field
                     count = int(counts[index])
-                    value_list = string_to_list(values[index],",")
+                    value_list = string_to_list(values[index],";")
                     i = 0
                     while i < count:
                         if(value_list[i] == None):
                             i +=1
                             continue
-                        if(type == "String" or type == "Color"):
-                            value_list[i]= value_list[i].replace("\"","")
+                        # if(type == "String" or type == "Color"):
+                        #     value_list[i]= value_list[i].replace("\"","")
                         new_value = xml_parser.Element(type)
                         new_value.set(type, value_list[i])
                         new_instance.append(new_value)

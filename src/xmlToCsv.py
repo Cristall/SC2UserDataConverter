@@ -22,7 +22,7 @@ def parse_fields(fields: list[xml_parser.Element]):
                         for flag_index in subtag:
                             entry += flag_index.attrib["index"] +":"+flag_index.attrib["value"] 
                             if flag_index != subtag[-1]:
-                                entry += ","
+                                entry += ";"
                         fields_dic[tag].append(entry)
                     else:
                         fields_dic[tag].append(subtag[0].attrib["value"])
@@ -38,7 +38,7 @@ def turn_indexdict_to_value(index_dict:dict):
     for index in index_dict:
         value += index_dict[index]
         if( index != list(index_dict.keys())[-1]):
-            value += ","
+            value += ";"
     return value
 
 # an instance in xml is turned into one row in csv.
