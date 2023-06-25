@@ -17,7 +17,7 @@ def main():
         input_path = sys.argv[1]
         output_path = sys.argv[2]
     else:
-        raise Exception("Too many Arguments. Excepts 0, 1 or 2.")
+        raise Exception("Too many Arguments. Expects 0, 1 or 2.")
 
     input_filename, input_file_extension = os.path.splitext(input_path)
     output_filename, output_file_extension = os.path.splitext(output_path)
